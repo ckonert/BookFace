@@ -1,4 +1,4 @@
-package nl.testwerk.bookface.controller;
+package nl.testwerk.bookface.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

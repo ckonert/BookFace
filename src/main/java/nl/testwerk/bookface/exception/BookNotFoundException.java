@@ -1,4 +1,4 @@
-package nl.testwerk.bookface.controller;
+package nl.testwerk.bookface.exception;
 
 public class BookNotFoundException extends RuntimeException {
 

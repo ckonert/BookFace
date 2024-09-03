@@ -1,8 +1,8 @@
 package nl.testwerk.bookface;
 
 import nl.testwerk.bookface.controller.AuthorController;
-import nl.testwerk.bookface.controller.AuthorNotFoundException;
-import nl.testwerk.bookface.controller.AuthorRepository;
+import nl.testwerk.bookface.exception.AuthorNotFoundException;
+import nl.testwerk.bookface.repository.AuthorRepository;
 import nl.testwerk.bookface.model.Author;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

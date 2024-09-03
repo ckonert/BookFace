@@ -1,7 +1,10 @@
 package nl.testwerk.bookface.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import nl.testwerk.bookface.exception.BookNotFoundException;
 import nl.testwerk.bookface.model.Book;
+import nl.testwerk.bookface.repository.AuthorRepository;
+import nl.testwerk.bookface.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

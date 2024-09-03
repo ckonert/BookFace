@@ -1,4 +1,4 @@
-package nl.testwerk.bookface.controller;
+package nl.testwerk.bookface.repository;
 
 import nl.testwerk.bookface.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,11 @@
 package nl.testwerk.bookface;
 
 import nl.testwerk.bookface.controller.*;
+import nl.testwerk.bookface.exception.BookNotFoundException;
 import nl.testwerk.bookface.model.Author;
 import nl.testwerk.bookface.model.Book;
+import nl.testwerk.bookface.repository.AuthorRepository;
+import nl.testwerk.bookface.repository.BookRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
