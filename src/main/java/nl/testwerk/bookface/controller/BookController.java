@@ -15,10 +15,10 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
     BookController(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;

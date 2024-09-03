@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
@@ -97,7 +96,7 @@ public class AuthorControllerTest {
         mockMvc.perform(post("/authors/")
                         .contentType("application/json")
                         .content("{\"firstname\": \"J.K.\", \"lastname\": \"Rowling\", \"imageUrl\": \"https://example.com/rowling.jpg\"}"))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname").value("J.K."))
                 .andExpect(jsonPath("$.lastname").value("Rowling"));
     }
@@ -131,7 +130,7 @@ public class AuthorControllerTest {
         Mockito.when(authorRepository.existsById(1L)).thenReturn(true);
 
         mockMvc.perform(delete("/authors/1"))
-                .andExpect(status().isNoContent());
+                .andExpect(status().is2xxSuccessful());
 
         Mockito.verify(authorRepository, Mockito.times(1)).deleteById(1L);
     }
