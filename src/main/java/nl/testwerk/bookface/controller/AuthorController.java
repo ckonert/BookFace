@@ -2,6 +2,8 @@ package nl.testwerk.bookface.controller;
 
 import nl.testwerk.bookface.model.Author;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,7 @@ public class AuthorController {
 
     @GetMapping("/{id}")
     Author author(@PathVariable Long id) {
-        return authorRepository.findById(id)
-                .orElseThrow(() -> new AuthorNotFoundException(id));
+        return authorRepository.findById(id).orElseThrow(() -> new AuthorNotFoundException(id));
     }
 
     @PostMapping("/")
@@ -35,14 +36,12 @@ public class AuthorController {
 
     @PutMapping("/{id}")
     Author updateAuthor(@RequestBody Author updatedAuthor, @PathVariable Long id) {
-        return authorRepository.findById(id)
-                .map(author -> {
-                    author.setFirstname(updatedAuthor.getFirstname());
-                    author.setLastname(updatedAuthor.getLastname());
-                    author.setImageUrl(updatedAuthor.getImageUrl());
-                    return authorRepository.save(author);
-                })
-                .orElseThrow(() -> new AuthorNotFoundException(id));
+        return authorRepository.findById(id).map(author -> {
+            author.setFirstname(updatedAuthor.getFirstname());
+            author.setLastname(updatedAuthor.getLastname());
+            author.setImageUrl(updatedAuthor.getImageUrl());
+            return authorRepository.save(author);
+        }).orElseThrow(() -> new AuthorNotFoundException(id));
     }
 
     @DeleteMapping("/{id}")
@@ -51,6 +50,13 @@ public class AuthorController {
             throw new AuthorNotFoundException(id);
         }
         authorRepository.deleteById(id);
+    }
+
+
+    // Exception handler for AuthorNotFoundException
+    @ExceptionHandler(AuthorNotFoundException.class)
+    public ResponseEntity<String> handleAuthorNotFoundException(AuthorNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 

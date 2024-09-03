@@ -1,6 +1,7 @@
 package nl.testwerk.bookface;
 
 import nl.testwerk.bookface.controller.AuthorController;
+import nl.testwerk.bookface.controller.AuthorNotFoundException;
 import nl.testwerk.bookface.controller.AuthorRepository;
 import nl.testwerk.bookface.model.Author;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -140,6 +142,7 @@ public class AuthorControllerTest {
         Mockito.when(authorRepository.existsById(1L)).thenReturn(false);
 
         mockMvc.perform(delete("/authors/1"))
-                .andExpect(status().isNotFound());
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof AuthorNotFoundException));
+
     }
 }

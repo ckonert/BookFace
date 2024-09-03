@@ -70,4 +70,10 @@ public class BookController {
         }
         bookRepository.deleteById(id);
     }
+
+    // Exception handler for BookNotFoundException
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<String> handleBookNotFoundException(BookNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }

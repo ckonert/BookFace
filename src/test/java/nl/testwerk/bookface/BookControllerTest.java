@@ -1,8 +1,6 @@
 package nl.testwerk.bookface;
 
-import nl.testwerk.bookface.controller.AuthorRepository;
-import nl.testwerk.bookface.controller.BookController;
-import nl.testwerk.bookface.controller.BookRepository;
+import nl.testwerk.bookface.controller.*;
 import nl.testwerk.bookface.model.Author;
 import nl.testwerk.bookface.model.Book;
 import org.junit.jupiter.api.Test;
@@ -18,6 +16,7 @@ import java.util.Optional;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -156,6 +155,6 @@ public class BookControllerTest {
         Mockito.when(bookRepository.existsById(1L)).thenReturn(false);
 
         mockMvc.perform(delete("/books/1"))
-                .andExpect(status().isNotFound());
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof BookNotFoundException));
     }
 }
