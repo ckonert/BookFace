@@ -12,10 +12,7 @@ import org.springframework.web.client.RestTemplate;
 public class BookFaceApplication {
 
     public static void main(String... args) {
-
-        log.info("Starting the BookFace...");
         SpringApplication.run(BookFaceApplication.class, args);
-        log.info("The BookFace has started...");
     }
 
     @Bean
