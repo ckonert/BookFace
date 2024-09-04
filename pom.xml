@@ -12,7 +12,7 @@
 	<artifactId>BookFace</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BookFace</name>
-	<description>Demo project for Testing REST</description>
+	<description>Project BookFace for learning testing for Testwerk</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -59,7 +59,24 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.7.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.18.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>7.18.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.18.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -67,6 +84,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- Surefire plugin for running tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.0</version>
+				<configuration>
+					<testSourceDirectory>${project.basedir}/applicatietest</testSourceDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

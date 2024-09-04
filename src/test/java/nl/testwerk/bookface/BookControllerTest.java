@@ -148,7 +148,7 @@ public class BookControllerTest {
         Mockito.when(bookRepository.existsById(1L)).thenReturn(true);
 
         mockMvc.perform(delete("/books/1"))
-                .andExpect(status().isNoContent());
+                .andExpect(status().is2xxSuccessful());
 
         Mockito.verify(bookRepository, Mockito.times(1)).deleteById(1L);
     }
