@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -158,6 +159,6 @@ public class BookControllerTest {
         Mockito.when(bookRepository.existsById(1L)).thenReturn(false);
 
         mockMvc.perform(delete("/books/1"))
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof BookNotFoundException));
+                .andExpect(result -> assertInstanceOf(BookNotFoundException.class, result.getResolvedException()));
     }
 }
