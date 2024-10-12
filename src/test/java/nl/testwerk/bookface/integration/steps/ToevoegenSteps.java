@@ -1,4 +1,4 @@
-package nl.testwerk.bookface.steps;
+package nl.testwerk.bookface.integration.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

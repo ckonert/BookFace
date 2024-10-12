@@ -1,4 +1,4 @@
-package nl.testwerk.bookface;
+package nl.testwerk.bookface.unit;
 
 import nl.testwerk.bookface.controller.AuthorController;
 import nl.testwerk.bookface.exception.AuthorNotFoundException;

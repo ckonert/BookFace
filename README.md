@@ -1,5 +1,7 @@
 # Getting Started
 
+Start app using command line: mvn spring-boot:run
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

@@ -1,4 +1,4 @@
-package nl.testwerk.bookface;
+package nl.testwerk.bookface.unit;
 
 import nl.testwerk.bookface.controller.*;
 import nl.testwerk.bookface.exception.BookNotFoundException;
@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
