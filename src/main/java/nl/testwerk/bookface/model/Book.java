@@ -3,6 +3,7 @@ package nl.testwerk.bookface.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 @Data
 @Builder
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Book {
 
