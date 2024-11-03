@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -47,11 +47,12 @@ public class AuthorControllerTest {
 
     @Test
     void getAllAuthors_ShouldReturnAuthorsList() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
+        Author author = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
         Mockito.when(authorRepository.findAll()).thenReturn(List.of(author));
 
@@ -63,11 +64,12 @@ public class AuthorControllerTest {
 
     @Test
     void getAuthor_ShouldReturnAuthor() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
+        Author author = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
         Mockito.when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
 
@@ -87,11 +89,12 @@ public class AuthorControllerTest {
 
     @Test
     void createAuthor_ShouldCreateAndReturnAuthor() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
+        Author author = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
         Mockito.when(authorRepository.save(Mockito.any(Author.class))).thenReturn(author);
 
@@ -105,16 +108,19 @@ public class AuthorControllerTest {
 
     @Test
     void updateAuthor_ShouldUpdateAndReturnAuthor() throws Exception {
-        Author existingAuthor = new Author();
-        existingAuthor.setId(1L);
-        existingAuthor.setFirstname("J.K.");
-        existingAuthor.setLastname("Rowling");
-        existingAuthor.setImageUrl("https://example.com/rowling.jpg");
+        Author existingAuthor = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
-        Author updatedAuthor = new Author();
-        updatedAuthor.setFirstname("Joanne");
-        updatedAuthor.setLastname("Rowling");
-        updatedAuthor.setImageUrl("https://example.com/rowling-updated.jpg");
+        Author updatedAuthor = Author.builder()
+                .id(1L)
+                .firstname("Joanne")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling-updated.jpg")
+                .build();
 
         Mockito.when(authorRepository.findById(1L)).thenReturn(Optional.of(existingAuthor));
         Mockito.when(authorRepository.save(Mockito.any(Author.class))).thenReturn(updatedAuthor);
@@ -142,7 +148,7 @@ public class AuthorControllerTest {
         Mockito.when(authorRepository.existsById(1L)).thenReturn(false);
 
         mockMvc.perform(delete("/authors/1"))
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof AuthorNotFoundException));
+                .andExpect(result -> assertInstanceOf(AuthorNotFoundException.class, result.getResolvedException()));
 
     }
 }

@@ -52,18 +52,20 @@ public class BookControllerTest {
 
     @Test
     void getAllBooks_ShouldReturnBooksList() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
+        Author author = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
-        Book book = new Book();
-        book.setId(1L);
-        book.setTitle("Harry Potter and the Philosopher's Stone");
-        book.setIsbn13("9780747532699");
-        book.setAuthorId(1L);
-        book.setImageUrl("https://example.com/harrypotter.jpg");
+        Book book = Book.builder()
+                .id(1L)
+                .title("Harry Potter and the Philosopher's Stone")
+                .isbn13("9780747532699")
+                .authorId(1L)
+                .imageUrl("https://example.com/harrypotter.jpg")
+                .build();
 
         Mockito.when(bookRepository.findAll()).thenReturn(List.of(book));
         Mockito.when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
@@ -76,18 +78,20 @@ public class BookControllerTest {
 
     @Test
     void getBook_ShouldReturnBook() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
+        Author author = Author.builder()
+                .id(1L)
+                .firstname("J.K.")
+                .lastname("Rowling")
+                .imageUrl("https://example.com/rowling.jpg")
+                .build();
 
-        Book book = new Book();
-        book.setId(1L);
-        book.setTitle("Harry Potter and the Philosopher's Stone");
-        book.setIsbn13("9780747532699");
-        book.setAuthorId(1L);
-        book.setImageUrl("https://example.com/harrypotter.jpg");
+        Book book = Book.builder()
+                .id(1L)
+                .title("Harry Potter and the Philosopher's Stone")
+                .isbn13("9780747532699")
+                .authorId(1L)
+                .imageUrl("https://example.com/harrypotter.jpg")
+                .build();
 
         Mockito.when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
         Mockito.when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
@@ -119,18 +123,13 @@ public class BookControllerTest {
 
     @Test
     void createBook_ShouldCreateAndReturnBook() throws Exception {
-        Author author = new Author();
-        author.setId(1L);
-        author.setFirstname("J.K.");
-        author.setLastname("Rowling");
-        author.setImageUrl("https://example.com/rowling.jpg");
-
-        Book book = new Book();
-        book.setId(1L);
-        book.setTitle("Harry Potter and the Philosopher's Stone");
-        book.setIsbn13("9780747532699");
-        book.setAuthorId(1L);
-        book.setImageUrl("https://example.com/harrypotter.jpg");
+        Book book = Book.builder()
+                .id(1L)
+                .title("Harry Potter and the Philosopher's Stone")
+                .isbn13("9780747532699")
+                .authorId(1L)
+                .imageUrl("https://example.com/harrypotter.jpg")
+                .build();
 
         Mockito.when(authorRepository.existsById(1L)).thenReturn(true);
         Mockito.when(bookRepository.save(Mockito.any(Book.class))).thenReturn(book);
