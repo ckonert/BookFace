@@ -56,12 +56,24 @@ public class BookSteps {
 
     @Then("the book is successfully added")
     public void verifyBookCreation() {
-        final var expectedBody = "{\"id\":5000,\"title\":\"The Hobbit\",\"isbn13\":\"1234567890123\",\"authorId\":1001,\"imageUrl\":\"https://www.memoriapress.com/wp-content/uploads/Hobbit-2.jpg\"}";
-        assertAll(
-                "Check the create body",
-                () -> assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode(), "Status is incorrect"),
-                () -> assertEquals(expectedBody, responseEntity.getBody(), "Body content is incorrect")
-        );
+        var objectMapper = new ObjectMapper();
+        try {
+            var body = responseEntity.getBody();
+            var book = objectMapper.readValue(body, Book.class);
+            String prettyPrintJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(book);
+            log.info(prettyPrintJson);
+            assertAll(
+                    "Check the create body",
+                    () -> assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode(), "Status is incorrect"),
+                    () -> assertEquals(5000L, book.getId(), "ID is incorrect"),
+                    () -> assertEquals("The Hobbit", book.getTitle(), "Title is incorrect"),
+                    () -> assertEquals("1234567890123", book.getIsbn13(), "ISBN is incorrect"),
+                    () -> assertEquals(1001L, book.getAuthorId(), "Author is incorrect"),
+                    () -> assertEquals("https://www.memoriapress.com/wp-content/uploads/Hobbit-2.jpg", book.getImageUrl(), "ImageUrl is incorrect")
+            );
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Then("the book data is returned")
@@ -69,7 +81,7 @@ public class BookSteps {
         var objectMapper = new ObjectMapper();
         try {
             var body = responseEntity.getBody();
-            Books bookList = objectMapper.readValue(body, Books.class);
+            var bookList = objectMapper.readValue(body, Books.class);
             String prettyPrintJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(bookList);
             log.info(prettyPrintJson);
 
