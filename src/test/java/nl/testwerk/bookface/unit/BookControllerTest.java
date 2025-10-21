@@ -1,6 +1,6 @@
 package nl.testwerk.bookface.unit;
 
-import nl.testwerk.bookface.controller.*;
+import nl.testwerk.bookface.controller.BookController;
 import nl.testwerk.bookface.exception.BookNotFoundException;
 import nl.testwerk.bookface.model.Author;
 import nl.testwerk.bookface.model.Book;
@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -29,16 +29,16 @@ public class BookControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private BookRepository bookRepository;
 
-    @MockBean
+    @MockitoBean
     private AuthorRepository authorRepository;
 
-    @MockBean
+    @MockitoBean
     private RestTemplateBuilder restTemplateBuilder;
 
-    @MockBean
+    @MockitoBean
     private RestTemplate restTemplate;
 
     @Test

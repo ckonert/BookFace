@@ -20,10 +20,7 @@
 		<java.version>21</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-<!--		<spring-boot.version>3.5.6</spring-boot.version>-->
 		<cucumber.version>7.30.0</cucumber.version>
-		<junit.jupiter.version>5.12.2</junit.jupiter.version>
-        <junit.platform.version>1.12.2</junit.platform.version>
         <lombok.version>1.18.42</lombok.version>
 	</properties>
 
@@ -84,9 +81,7 @@
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Cucumber Dependencies -->
-		<dependency>
+        <dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
@@ -98,74 +93,36 @@
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-suite</artifactId>
-            <version>${junit.platform.version}</version>
-			<scope>test</scope>
-		</dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit.platform.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
-		<!-- JUnit 5 API and Engine for Cucumber -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-			<!-- Maven Compiler Plugin -->
-			<plugin>
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.14.0</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-
-			<!-- Surefire Plugin for running Unit Tests -->
-			<plugin>
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>3.5.4</version>
 				<configuration>
 					<includes>
-						<include>**/*Test.java</include> <!-- Only Unit Tests -->
+						<include>**/*Test.java</include>
 					</includes>
 					<properties>
 						<configurationParameters>
@@ -174,12 +131,10 @@
 					</properties>
 				</configuration>
 			</plugin>
-
-			<!-- Failsafe Plugin for running Integration Tests -->
-			<plugin>
+            <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -188,7 +143,7 @@
 						</goals>
 						<configuration>
 							<includes>
-								<include>**/*IT.java</include> <!-- Only Integration Tests -->
+								<include>**/*IT.java</include>
 							</includes>
 						</configuration>
 					</execution>

@@ -5,23 +5,17 @@ import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.spring.CucumberContextConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import nl.testwerk.bookface.integration.factory.BookFactory;
 import nl.testwerk.bookface.integration.model.Books;
 import nl.testwerk.bookface.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-
 
 @Slf4j
-@CucumberContextConfiguration
-@SpringBootTest(webEnvironment = RANDOM_PORT)
 public class BookSteps {
     @Autowired
     private TestRestTemplate restTemplate;
