@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://testwerk.nl/bookface/soap"
+           xmlns:tns="http://testwerk.nl/bookface/soap"
+           elementFormDefault="qualified">
+
+    <xs:element name="getAllBooksRequest" type="tns:GetAllBooksRequest"/>
+    <xs:element name="getAllBooksResponse" type="tns:GetAllBooksResponse"/>
+
+    <xs:complexType name="GetAllBooksRequest">
+        <xs:sequence/>
+    </xs:complexType>
+
+    <xs:complexType name="GetAllBooksResponse">
+        <xs:sequence>
+            <xs:element name="books" type="tns:Book" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Book">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="isbn13" type="xs:string" minOccurs="0"/>
+            <xs:element name="authorId" type="xs:long"/>
+            <xs:element name="imageUrl" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
