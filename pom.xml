@@ -173,9 +173,10 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <excludedGroups>cucumber</excludedGroups>
                     <properties>
                         <configurationParameters>
-                            cucumber.glue=nl.testwerk.bookface.integration.steps
+                            junit.platform.engine.excludes=cucumber
                         </configurationParameters>
                     </properties>
                 </configuration>
@@ -193,6 +194,7 @@
                         <configuration>
                             <includes>
                                 <include>**/*IT.java</include>
+                                <include>**/*CucumberIT.java</include>
                             </includes>
                         </configuration>
                     </execution>
